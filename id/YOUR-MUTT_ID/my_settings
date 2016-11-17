@@ -1,0 +1,6 @@
+set my_imap_user=<your username>
+set my_pass=<your password>
+set my_spoolfile=imap://<url>/
+set my_url=smtp://<url>/
+set my_realname='<your real name>'
+set my_from=<your mail address>

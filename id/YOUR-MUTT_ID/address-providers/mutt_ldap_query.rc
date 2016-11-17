@@ -1,0 +1,7 @@
+# mutt_ldap_query.rc
+
+$ldap_server = '<your LDAP server URL>';
+$search_base = 'dc=<your search base>,dc=local';
+$ldap_result_comment = "from $ldap_server";
+$ldap_bind_dn = '<your LDAP user>';
+$ldap_bind_password = '<your password>';

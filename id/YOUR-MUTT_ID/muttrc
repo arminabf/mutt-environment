@@ -1,0 +1,52 @@
+source $my_pwd/my_settings
+
+set imap_user=$my_imap_user
+set imap_pass=$my_pass
+set spoolfile=$my_spoolfile
+set smtp_url=$my_url
+
+set realname=$my_realname
+set from=$my_from
+set folder=$spoolfile
+
+set record='=Archiv'
+set postponed='=Entwürfe'
+set header_cache=$my_pwd/cache
+set message_cachedir=$header_cache
+set certificate_file=$header_cache/certs
+
+set editor='vim'
+set sleep_time = 0
+set text_flowed=yes
+unset signature
+set pager="less"
+set pager_stop=yes
+set pager_index_lines=10
+
+set date_format="%d-%m-%y %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
+
+# first, ignore all headers, then add headers selectively
+ignore *    
+unignore From To Reply-To Subject X-Mailer Cc Date  
+
+set query_command = "echo; /bin/run-parts -a '%s' $my_pwd/address-providers/ 2> /dev/null |grep '@'"
+macro index,pager C "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
+
+#
+# automation
+#
+bind editor \t complete-query
+bind editor \ct complete
+
+macro index,pager I <change-folder>=<enter> 'goto INBOX'
+macro index,pager A '<change-folder>=Archiv<enter>' 'goto archive'
+macro index,pager \ca <pipe-message>detach<enter> 'save all attachments'
+
+folder-hook . 'set read_inc=5000'
+folder-hook . 'set sort=threads'
+folder-hook . 'push <collapse-all><End>'
+folder-hook =$ 'set sort=date-received'
+
+save-hook . '=Archiv'
