@@ -1,0 +1,55 @@
+#
+# muttrc
+#
+set print_command=muttprint
+set forward_format='[Fwd: %s]'
+set pager_index_lines=10
+set delete=yes
+set timeout=5
+set mbox_type=Maildir
+set alias_file=/dev/null
+set imap_idle=yes
+set imap_peek=no
+set arrow_cursor=yes
+
+auto_view text/html
+
+
+#
+# interface
+#
+ignore		*
+unhdr_order	*
+unignore	date: from: to: cc: bcc:
+hdr_order	date: from: to: cc: bcc:
+
+color	status		brightwhite	blue
+color	message		brightyellow	default
+color	error		brightred	default
+color	tree		yellow		default
+
+color	index		brightred	default	'~N|~O'
+color	index		cyan		default	'~G'
+color	index		brightcyan	default	'~N ~G'
+color	index		brightyellow	default	'~F'
+color	index		brightmagenta	default	'~T'
+color	index		brightblack	default	'~D'
+
+color	hdrdefault	cyan		default
+color	quoted		yellow		default
+color	markers		brightred	default
+color	attachment	brightblack	default
+color	signature	brightblack	default
+
+color	body		brightyellow	red	'^gpg: .*$'
+color	body		brightblack	default	'^gpg: Signature made.*using.*key ID.*$'
+color	body		brightblack	default	'^gpg: Can.t check signature: public key not found$'
+color	body		brightgreen	default	'^gpg: Good signature from ".*"$'
+color	body		brightred	default	'^gpg: BAD signature from ".*"$'
+
+
+#
+# source
+#
+set my_pwd=~/.mutt/id/$MUTT_ID
+source $my_pwd/muttrc
