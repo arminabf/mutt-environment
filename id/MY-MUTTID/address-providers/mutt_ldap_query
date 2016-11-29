@@ -98,11 +98,7 @@ sub process_file {
 }
 
 # first we need to apply defaults
-process_file("/etc/lbdb_ldap.rc",
-             "/etc/mutt_ldap_query.rc",
-             "$ENV{HOME}/.lbdb/ldap.rc",
-	           "$ENV{HOME}/.mutt_ldap_query.rc",
-             "$ENV{PWD}/mutt_ldap_query.rc");
+process_file("$ENV{CWD}/mutt_ldap_query.rc");
 
 
 # Parse command line options. They override system defaults.

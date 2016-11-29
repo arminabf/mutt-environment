@@ -31,7 +31,7 @@ set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
 ignore *    
 unignore From To Reply-To Subject X-Mailer Cc Date  
 
-set query_command = "echo; /bin/run-parts -a '%s' $my_pwd/address-providers/ 2> /dev/null |grep '@'"
+set query_command = "echo; CWD=$my_pwd/address-providers /bin/run-parts -a '%s' $my_pwd/address-providers/ 2> /dev/null | grep '@'"
 macro index,pager C "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
 
 #
